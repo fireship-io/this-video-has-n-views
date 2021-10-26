@@ -13,7 +13,7 @@ const oauth2Client = new google.auth.OAuth2(client, secret, redirect);
 async function updateVideoTitle() {
   // Get refresh_token from DB
   const tokens = (await admin.firestore().doc('tokens/userID').get()).data();
-  oauth2Client.setCredentials(tokens);
+  oauth2Client.setCredentials({ refresh_token: tokens });
 
   // YouTube client
   const youtube = google.youtube({
